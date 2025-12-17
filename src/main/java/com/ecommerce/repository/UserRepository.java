@@ -9,4 +9,6 @@ public class UserRepository extends JpaRepository<User, Long> {
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
 
+    @Query("SELECT u FROM User u WHERE u.usernamr = :username OR u.email = :email")
+    Optional<User> findByUsernameOrEmail(@Param("username")String username, @Param("email")String email);
 }
